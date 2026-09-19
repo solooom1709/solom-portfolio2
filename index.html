@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLOM — Eslam Mohamed</title>
+<meta name="description" content="Eslam Mohamed — Web Developer">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+:root{
+  --lime:#b7ff00;
+  --black:#080808;
+  --soft:#111111;
+  --white:#f4f4ef;
+  --muted:#9b9b94;
+  --line:#262626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);color:var(--white);
+  font-family:"DM Sans",Arial,sans-serif;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:#000}
+
+/* opening sequence */
+.intro{
+  position:fixed;inset:0;background:#050505;z-index:9999;
+  display:grid;place-items:center;overflow:hidden;
+  animation:introOut .9s 6.25s cubic-bezier(.7,0,.2,1) forwards;
+}
+.intro-title{
+  position:relative;text-align:center;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(3.2rem,10vw,8.5rem);
+  line-height:.82;letter-spacing:-.055em;
+  text-transform:uppercase;
+}
+.intro-title span{display:block;overflow:hidden}
+.intro-title i{
+  display:inline-block;font-style:normal;
+  opacity:0;filter:blur(9px);
+  transform:translateY(120%) rotate(8deg);
+  animation:letterIn .95s cubic-bezier(.16,1,.3,1) forwards;
+}
+.intro-title .row2 i{animation-delay:.13s}
+.flash{
+  position:absolute;inset:0;background:var(--lime);
+  transform:translateX(-110%);
+  animation:flash .9s 4.95s cubic-bezier(.7,0,.2,1) forwards;
+}
+@keyframes letterIn{
+  to{opacity:1;filter:blur(0);transform:translateY(0) rotate(0)}
+}
+@keyframes flash{
+  0%{transform:translateX(-110%)}45%{transform:translateX(0)}
+  100%{transform:translateX(110%)}
+}
+@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+/* page */
+.page{opacity:0;animation:pageIn 1s 5.65s ease forwards}
+@keyframes pageIn{to{opacity:1}}
+
+.topline{
+  position:fixed;top:0;left:0;right:0;height:5px;background:var(--lime);
+  z-index:1000;transform:scaleX(0);transform-origin:left;
+  animation:lineIn .8s 6s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes lineIn{to{transform:scaleX(1)}}
+
+nav{
+  position:fixed;z-index:900;top:5px;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 5vw;mix-blend-mode:normal;
+  background:linear-gradient(#080808e8,transparent);
+}
+.logo{font-weight:700;letter-spacing:.12em;font-size:14px}
+.navlinks{display:flex;gap:30px;font-size:11px;text-transform:uppercase;letter-spacing:.13em}
+.navlinks a{opacity:.75;transition:.25s}.navlinks a:hover{opacity:1;color:var(--lime)}
+.menu{display:none}
+
+section{position:relative;padding:110px 6vw}
+.hero{
+  min-height:100vh;display:grid;place-items:center;
+  padding-top:130px;
+}
+.hero-inner{width:min(1250px,100%);display:grid;grid-template-columns:1.1fr .9fr;gap:5vw;align-items:center}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--lime);margin-bottom:22px}
+.hero h1{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(4.5rem,11vw,10.5rem);
+  line-height:.79;letter-spacing:-.065em;text-transform:uppercase;
+}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero-copy{margin-top:34px;max-width:430px;color:#b8b8b0;line-height:1.7;font-size:15px}
+.hero-photo{
+  position:relative;aspect-ratio:4/5;overflow:hidden;background:#151515;
+}
+.hero-photo:before{
+  content:"";position:absolute;inset:12px;border:1px solid #ffffff30;z-index:2;pointer-events:none
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.08);transform:scale(1.02)}
+.hero-photo .tag{
+  position:absolute;bottom:20px;left:20px;background:var(--lime);color:#000;
+  padding:9px 13px;font-size:10px;font-weight:700;text-transform:uppercase;z-index:3;
+}
+
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:15px 0;background:var(--lime);color:#000}
+.marquee-track{display:flex;width:max-content;animation:marquee 18s linear infinite}
+.marquee span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:0 30px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:55px}
+.section-head .num{font-size:11px;color:var(--lime);letter-spacing:.15em}
+.section-head h2{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(3rem,7vw,7rem);line-height:.85;letter-spacing:-.06em;
+  text-transform:uppercase;
+}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start}
+.big-copy{font-size:clamp(1.35rem,2.5vw,2.3rem);line-height:1.22;letter-spacing:-.035em}
+.big-copy mark{background:none;color:var(--lime)}
+.small-copy{color:#9f9f98;line-height:1.8;font-size:14px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:70px}
+.stat{padding:35px 20px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat strong{font-family:"Playfair Display";font-size:clamp(3rem,7vw,6rem);line-height:.8}
+.stat p{margin-top:18px;color:#777;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
+
+.work{background:#0b0b0b}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{
+  min-height:280px;border:1px solid var(--line);background:#101010;padding:28px;
+  position:relative;overflow:hidden;transition:transform .35s,border-color .35s;
+}
+.card:hover{transform:translateY(-7px);border-color:#555}
+.card:after{
+  content:"";position:absolute;width:180px;height:180px;background:var(--lime);
+  border-radius:50%;right:-80px;bottom:-100px;filter:blur(2px);opacity:.85;transition:.5s
+}
+.card:hover:after{right:-45px;bottom:-55px}
+.card small{color:var(--lime);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.card h3{font-family:"Playfair Display";font-size:clamp(2rem,4vw,4.2rem);line-height:.9;text-transform:uppercase;margin-top:80px}
+.card p{color:#888;margin-top:15px;max-width:330px;font-size:13px;line-height:1.6}
+.card .arrow{position:absolute;right:25px;top:25px;font-size:24px;z-index:2}
+
+.skills-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:7vw}
+.skills-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.skill{
+  border:1px solid var(--line);padding:15px 14px;color:#c9c9c0;font-size:12px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.skill b{width:7px;height:7px;border-radius:50%;background:var(--lime)}
+
+.contact{min-height:85vh;display:flex;align-items:center}
+.contact h2{font-family:"Playfair Display";font-size:clamp(4rem,12vw,12rem);line-height:.78;letter-spacing:-.07em;text-transform:uppercase}
+.contact h2 em{font-style:normal;color:var(--lime)}
+.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:50px}
+.contact-row a{
+  border:1px solid #333;padding:13px 17px;font-size:11px;text-transform:uppercase;
+  letter-spacing:.12em;transition:.25s
+}
+.contact-row a:hover{background:var(--lime);color:#000;border-color:var(--lime)}
+
+footer{padding:25px 6vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#666;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+
+.reveal{opacity:0;transform:translateY(50px);transition:1s cubic-bezier(.16,1,.3,1)}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:800px){
+  nav{padding:17px 5vw}.navlinks{display:none}.menu{display:block;font-size:11px}
+  section{padding:85px 5vw}
+  .hero-inner,.about-grid,.skills-wrap{grid-template-columns:1fr}
+  .hero{padding-top:120px}.hero-photo{max-width:520px}
+  .work-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:0}
+  .skills-list{grid-template-columns:1fr}
+  footer{gap:15px;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="intro" aria-hidden="true">
+  <div class="intro-title">
+    <span class="row1">
+      <i>E</i><i>S</i><i>L</i><i>A</i><i>M</i>
+    </span>
+    <span class="row2">
+      <i>M</i><i>O</i><i>H</i><i>A</i><i>M</i><i>E</i><i>D</i>
+    </span>
+  </div>
+  <div class="flash"></div>
+</div>
+<div class="topline"></div>
+
+<div class="page">
+<nav>
+  <a class="logo" href="#home">SOLOM®</a>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+  </div>
+  <span class="menu">MENU</span>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="reveal">
+      <div class="kicker">Web Developer / SOLOM</div>
+      <h1>Eslam<br><em>Mohamed</em></h1>
+      <p class="hero-copy">I build modern websites with clean interfaces, motion and personality — turning ideas into experiences people remember.</p>
+    </div>
+    <div class="hero-photo reveal">
+      <img src="profile.jpg" alt="Eslam Mohamed">
+      <div class="tag">Available for creative web work</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Web Development</span><span>Creative Code</span><span>Modern Interfaces</span><span>SOLOM</span>
+    <span>Web Development</span><span>Creative Code</span><span>Modern Interfaces</span><span>SOLOM</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-head reveal"><span class="num">01 / ABOUT</span><h2>Who<br>am I?</h2></div>
+  <div class="about-grid">
+    <p class="big-copy reveal">I'm <mark>Eslam Mohamed</mark>, a web developer who enjoys computers, programming and building things from a blank screen.</p>
+    <p class="small-copy reveal">SOLOM is my personal digital space. The idea is simple: combine strong typography, smooth movement and useful code to create websites that feel different without becoming difficult to use.</p>
+  </div>
+  <div class="stats reveal">
+    <div class="stat"><strong>01</strong><p>Personal portfolio</p></div>
+    <div class="stat"><strong>∞</strong><p>Ideas to build</p></div>
+    <div class="stat"><strong>24/7</strong><p>Learning mode</p></div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="section-head reveal"><span class="num">02 / WORK</span><h2>Selected<br>work</h2></div>
+  <div class="work-grid">
+    <a class="card reveal" href="https://solooom1709.github.io/solom/" target="_blank" rel="noopener">
+      <span class="arrow">↗</span><small>01 / Live</small>
+      <h3>SOLOM</h3><p>My live personal website — built, published and available on the web.</p>
+    </a>
+    <div class="card reveal"><span class="arrow">02</span><small>02 / Building</small><h3>Next<br>Project</h3><p>A new project is being shaped while I keep learning and improving my code.</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-head reveal"><span class="num">03 / SKILLS</span><h2>What I<br>use</h2></div>
+  <div class="skills-wrap">
+    <p class="big-copy reveal">Learning by <mark>building</mark>. Every project adds another tool to the box.</p>
+    <div class="skills-list reveal">
+      <div class="skill">HTML <b></b></div><div class="skill">CSS <b></b></div>
+      <div class="skill">JavaScript <b></b></div><div class="skill">Python <b></b></div>
+      <div class="skill">VS Code <b></b></div><div class="skill">Git / GitHub <b></b></div>
+      <div class="skill">Responsive Design <b></b></div><div class="skill">Creative UI <b></b></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <div class="kicker reveal">04 / CONTACT</div>
+    <h2 class="reveal">Let's<br><em>talk.</em></h2>
+    <div class="contact-row reveal">
+      <a href="https://www.instagram.com/eslam_elghazal1/" target="_blank">Instagram</a>
+      <a href="https://wa.me/201120894110" target="_blank">WhatsApp</a>
+      <a href="https://www.tiktok.com/@eslam_elghazal1" target="_blank">TikTok</a>
+      <a href="https://www.facebook.com/share/1JDG2sBXWd/" target="_blank">Facebook</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><span>© SOLOM — Eslam Mohamed</span><span>Built with code & curiosity</span></footer>
+</div>
+
+<script>
+const items=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.12});
+items.forEach(x=>io.observe(x));
+</script>
+</body>
+</html>
