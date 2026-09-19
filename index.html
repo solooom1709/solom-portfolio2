@@ -1,296 +1,1028 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOLOM — Eslam Mohamed</title>
-<meta name="description" content="Eslam Mohamed — Web Developer">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLOM — Eslam Mohamed</title>
+    <meta name="description" content="Eslam Mohamed — Web Developer">
 
-:root{
-  --lime:#b7ff00;
-  --black:#080808;
-  --soft:#111111;
-  --white:#f4f4ef;
-  --muted:#9b9b94;
-  --line:#262626;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--black);color:var(--white);
-  font-family:"DM Sans",Arial,sans-serif;overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--lime);color:#000}
+    <style>
+        :root {
+            --lime: #b7ff00;
+            --black: #050505;
+            --dark: #0b0b0b;
+            --white: #f5f5f0;
+            --gray: #9a9a93;
+            --line: #252525;
+        }
 
-/* opening sequence */
-.intro{
-  position:fixed;inset:0;background:#050505;z-index:9999;
-  display:grid;place-items:center;overflow:hidden;
-  animation:introOut .9s 6.25s cubic-bezier(.7,0,.2,1) forwards;
-}
-.intro-title{
-  position:relative;text-align:center;
-  font-family:"Playfair Display",Georgia,serif;
-  font-size:clamp(3.2rem,10vw,8.5rem);
-  line-height:.82;letter-spacing:-.055em;
-  text-transform:uppercase;
-}
-.intro-title span{display:block;overflow:hidden}
-.intro-title i{
-  display:inline-block;font-style:normal;
-  opacity:0;filter:blur(9px);
-  transform:translateY(120%) rotate(8deg);
-  animation:letterIn .95s cubic-bezier(.16,1,.3,1) forwards;
-}
-.intro-title .row2 i{animation-delay:.13s}
-.flash{
-  position:absolute;inset:0;background:var(--lime);
-  transform:translateX(-110%);
-  animation:flash .9s 4.95s cubic-bezier(.7,0,.2,1) forwards;
-}
-@keyframes letterIn{
-  to{opacity:1;filter:blur(0);transform:translateY(0) rotate(0)}
-}
-@keyframes flash{
-  0%{transform:translateX(-110%)}45%{transform:translateX(0)}
-  100%{transform:translateX(110%)}
-}
-@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* page */
-.page{opacity:0;animation:pageIn 1s 5.65s ease forwards}
-@keyframes pageIn{to{opacity:1}}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.topline{
-  position:fixed;top:0;left:0;right:0;height:5px;background:var(--lime);
-  z-index:1000;transform:scaleX(0);transform-origin:left;
-  animation:lineIn .8s 6s cubic-bezier(.16,1,.3,1) forwards;
-}
-@keyframes lineIn{to{transform:scaleX(1)}}
+        body {
+            overflow-x: hidden;
+            background: var(--black);
+            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-nav{
-  position:fixed;z-index:900;top:5px;left:0;right:0;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:20px 5vw;mix-blend-mode:normal;
-  background:linear-gradient(#080808e8,transparent);
-}
-.logo{font-weight:700;letter-spacing:.12em;font-size:14px}
-.navlinks{display:flex;gap:30px;font-size:11px;text-transform:uppercase;letter-spacing:.13em}
-.navlinks a{opacity:.75;transition:.25s}.navlinks a:hover{opacity:1;color:var(--lime)}
-.menu{display:none}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-section{position:relative;padding:110px 6vw}
-.hero{
-  min-height:100vh;display:grid;place-items:center;
-  padding-top:130px;
-}
-.hero-inner{width:min(1250px,100%);display:grid;grid-template-columns:1.1fr .9fr;gap:5vw;align-items:center}
-.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--lime);margin-bottom:22px}
-.hero h1{
-  font-family:"Playfair Display",Georgia,serif;
-  font-size:clamp(4.5rem,11vw,10.5rem);
-  line-height:.79;letter-spacing:-.065em;text-transform:uppercase;
-}
-.hero h1 em{font-style:normal;color:var(--lime)}
-.hero-copy{margin-top:34px;max-width:430px;color:#b8b8b0;line-height:1.7;font-size:15px}
-.hero-photo{
-  position:relative;aspect-ratio:4/5;overflow:hidden;background:#151515;
-}
-.hero-photo:before{
-  content:"";position:absolute;inset:12px;border:1px solid #ffffff30;z-index:2;pointer-events:none
-}
-.hero-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.08);transform:scale(1.02)}
-.hero-photo .tag{
-  position:absolute;bottom:20px;left:20px;background:var(--lime);color:#000;
-  padding:9px 13px;font-size:10px;font-weight:700;text-transform:uppercase;z-index:3;
-}
+        ::selection {
+            background: var(--lime);
+            color: #000;
+        }
 
-.marquee{border-block:1px solid var(--line);overflow:hidden;padding:15px 0;background:var(--lime);color:#000}
-.marquee-track{display:flex;width:max-content;animation:marquee 18s linear infinite}
-.marquee span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:0 30px}
-@keyframes marquee{to{transform:translateX(-50%)}}
+        /* =========================
+           INTRO
+        ========================= */
 
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:55px}
-.section-head .num{font-size:11px;color:var(--lime);letter-spacing:.15em}
-.section-head h2{
-  font-family:"Playfair Display",Georgia,serif;
-  font-size:clamp(3rem,7vw,7rem);line-height:.85;letter-spacing:-.06em;
-  text-transform:uppercase;
-}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start}
-.big-copy{font-size:clamp(1.35rem,2.5vw,2.3rem);line-height:1.22;letter-spacing:-.035em}
-.big-copy mark{background:none;color:var(--lime)}
-.small-copy{color:#9f9f98;line-height:1.8;font-size:14px}
+        .intro {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--black);
+            animation: introExit 1s 7.1s cubic-bezier(.76, 0, .24, 1) forwards;
+        }
 
-.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:70px}
-.stat{padding:35px 20px;border-right:1px solid var(--line)}
-.stat:last-child{border-right:0}
-.stat strong{font-family:"Playfair Display";font-size:clamp(3rem,7vw,6rem);line-height:.8}
-.stat p{margin-top:18px;color:#777;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-.work{background:#0b0b0b}
-.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card{
-  min-height:280px;border:1px solid var(--line);background:#101010;padding:28px;
-  position:relative;overflow:hidden;transition:transform .35s,border-color .35s;
-}
-.card:hover{transform:translateY(-7px);border-color:#555}
-.card:after{
-  content:"";position:absolute;width:180px;height:180px;background:var(--lime);
-  border-radius:50%;right:-80px;bottom:-100px;filter:blur(2px);opacity:.85;transition:.5s
-}
-.card:hover:after{right:-45px;bottom:-55px}
-.card small{color:var(--lime);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-.card h3{font-family:"Playfair Display";font-size:clamp(2rem,4vw,4.2rem);line-height:.9;text-transform:uppercase;margin-top:80px}
-.card p{color:#888;margin-top:15px;max-width:330px;font-size:13px;line-height:1.6}
-.card .arrow{position:absolute;right:25px;top:25px;font-size:24px;z-index:2}
+        .eng {
+            color: var(--white);
+            font-size: clamp(100px, 19vw, 300px);
+            font-weight: 900;
+            line-height: .72;
+            letter-spacing: -.09em;
+            opacity: 0;
+            filter: blur(20px);
+            transform: translateY(100px) scale(.65);
+            animation: engIn 1.25s cubic-bezier(.16, 1, .3, 1) .2s forwards;
+        }
 
-.skills-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:7vw}
-.skills-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.skill{
-  border:1px solid var(--line);padding:15px 14px;color:#c9c9c0;font-size:12px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.skill b{width:7px;height:7px;border-radius:50%;background:var(--lime)}
+        .name-animation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 150px;
+            margin-top: 55px;
+            color: var(--lime);
+            font-size: clamp(28px, 4.8vw, 70px);
+            font-weight: 800;
+            line-height: .92;
+            letter-spacing: .035em;
+            white-space: nowrap;
+        }
 
-.contact{min-height:85vh;display:flex;align-items:center}
-.contact h2{font-family:"Playfair Display";font-size:clamp(4rem,12vw,12rem);line-height:.78;letter-spacing:-.07em;text-transform:uppercase}
-.contact h2 em{font-style:normal;color:var(--lime)}
-.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:50px}
-.contact-row a{
-  border:1px solid #333;padding:13px 17px;font-size:11px;text-transform:uppercase;
-  letter-spacing:.12em;transition:.25s
-}
-.contact-row a:hover{background:var(--lime);color:#000;border-color:var(--lime)}
+        .name-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-footer{padding:25px 6vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#666;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+        .name-animation span {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(15px);
+            transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(.15);
+            animation: lettersAssemble 1.45s cubic-bezier(.16, 1, .3, 1) calc(1.35s + var(--d)) forwards;
+        }
 
-.reveal{opacity:0;transform:translateY(50px);transition:1s cubic-bezier(.16,1,.3,1)}
-.reveal.show{opacity:1;transform:none}
+        .intro-flash {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            background: var(--lime);
+            transform: translateX(-110%);
+            animation: introFlash .95s 6.45s cubic-bezier(.76, 0, .24, 1) forwards;
+        }
 
-@media(max-width:800px){
-  nav{padding:17px 5vw}.navlinks{display:none}.menu{display:block;font-size:11px}
-  section{padding:85px 5vw}
-  .hero-inner,.about-grid,.skills-wrap{grid-template-columns:1fr}
-  .hero{padding-top:120px}.hero-photo{max-width:520px}
-  .work-grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr}
-  .stat{border-right:0;border-bottom:1px solid var(--line)}
-  .stat:last-child{border-bottom:0}
-  .skills-list{grid-template-columns:1fr}
-  footer{gap:15px;flex-direction:column}
-}
-</style>
+        @keyframes engIn {
+            0% {
+                opacity: 0;
+                filter: blur(20px);
+                transform: translateY(100px) scale(.65);
+            }
+
+            55% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes lettersAssemble {
+            0% {
+                opacity: 0;
+                filter: blur(15px);
+                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(.15);
+            }
+
+            25% {
+                opacity: 1;
+                filter: blur(5px);
+                transform:
+                    translate(calc(var(--x) * .8), calc(var(--y) * .8))
+                    rotate(calc(var(--r) * .8))
+                    scale(1.2);
+            }
+
+            55% {
+                opacity: 1;
+                filter: blur(1px);
+                transform:
+                    translate(calc(var(--x) * .35), calc(var(--y) * .35))
+                    rotate(calc(var(--r) * .35))
+                    scale(1.05);
+            }
+
+            75% {
+                opacity: 1;
+                filter: blur(0);
+                transform:
+                    translate(calc(var(--x) * -.08), calc(var(--y) * -.08))
+                    rotate(calc(var(--r) * -.08))
+                    scale(1.02);
+            }
+
+            100% {
+                opacity: 1;
+                filter: blur(0);
+                transform: translate(0, 0) rotate(0) scale(1);
+            }
+        }
+
+        @keyframes introFlash {
+            0% {
+                transform: translateX(-110%);
+            }
+
+            45% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(110%);
+            }
+        }
+
+        @keyframes introExit {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .topline {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            height: 5px;
+            background: var(--lime);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: lineIn .8s 6.7s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        .page {
+            opacity: 0;
+            animation: pageIn 1s 6.4s ease forwards;
+        }
+
+        @keyframes lineIn {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes pageIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 5px;
+            right: 0;
+            left: 0;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 5vw;
+            background: linear-gradient(#080808e8, transparent);
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .14em;
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navlinks a,
+        .menu {
+            font-size: 11px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .navlinks a {
+            opacity: .7;
+            transition: .25s ease;
+        }
+
+        .navlinks a:hover {
+            color: var(--lime);
+            opacity: 1;
+        }
+
+        .menu {
+            display: none;
+        }
+
+        section {
+            position: relative;
+            padding: 110px 6vw;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            display: grid;
+            min-height: 100vh;
+            padding-top: 130px;
+            place-items: center;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 5vw;
+            align-items: center;
+            width: min(1250px, 100%);
+        }
+
+        .kicker {
+            margin-bottom: 22px;
+            color: var(--lime);
+            font-size: 11px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(4.5rem, 11vw, 10.5rem);
+            line-height: .79;
+            letter-spacing: -.065em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 em {
+            color: var(--lime);
+            font-style: normal;
+        }
+
+        .hero-eng {
+            color: var(--white);
+            font-size: .5em;
+            letter-spacing: -.04em;
+        }
+
+        .hero-copy {
+            max-width: 430px;
+            margin-top: 34px;
+            color: #b8b8b0;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .profile-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-photo {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #151515;
+        }
+
+        .hero-photo::before {
+            position: absolute;
+            z-index: 2;
+            inset: 12px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            content: "";
+            pointer-events: none;
+        }
+
+        .hero-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.08);
+            transform: scale(1.02);
+        }
+
+        .hero-photo .tag {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 3;
+            padding: 9px 13px;
+            background: var(--lime);
+            color: #000;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .quran-verse {
+            margin-top: 20px;
+            padding: 16px 18px;
+            border-right: 3px solid var(--lime);
+            background: #0d0d0d;
+            color: var(--white);
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: clamp(18px, 2vw, 25px);
+            font-weight: 700;
+            line-height: 1.7;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .quran-verse small {
+            display: block;
+            margin-top: 3px;
+            color: var(--lime);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           MARQUEE
+        ========================= */
+
+        .marquee {
+            overflow: hidden;
+            padding: 15px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--lime);
+            color: #000;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 18s linear infinite;
+        }
+
+        .marquee span {
+            padding: 0 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .section-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 55px;
+        }
+
+        .section-head .num {
+            color: var(--lime);
+            font-size: 11px;
+            letter-spacing: .15em;
+        }
+
+        .section-head h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(3rem, 7vw, 7rem);
+            line-height: .85;
+            letter-spacing: -.06em;
+            text-transform: uppercase;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8vw;
+            align-items: start;
+        }
+
+        .big-copy {
+            font-size: clamp(1.35rem, 2.5vw, 2.3rem);
+            line-height: 1.22;
+            letter-spacing: -.035em;
+        }
+
+        .big-copy mark {
+            background: none;
+            color: var(--lime);
+        }
+
+        .small-copy {
+            color: #9f9f98;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 70px;
+            border-top: 1px solid var(--line);
+        }
+
+        .stat {
+            padding: 35px 20px;
+            border-right: 1px solid var(--line);
+        }
+
+        .stat:last-child {
+            border-right: 0;
+        }
+
+        .stat strong {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: .8;
+        }
+
+        .stat p {
+            margin-top: 18px;
+            color: #777;
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           WORK
+        ========================= */
+
+        .work {
+            background: var(--dark);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            position: relative;
+            min-height: 280px;
+            padding: 28px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: #101010;
+            transition: transform .35s, border-color .35s;
+        }
+
+        .card:hover {
+            border-color: #555;
+            transform: translateY(-7px);
+        }
+
+        .card::after {
+            position: absolute;
+            right: -80px;
+            bottom: -100px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--lime);
+            content: "";
+            opacity: .85;
+            transition: .5s;
+        }
+
+        .card:hover::after {
+            right: -45px;
+            bottom: -55px;
+        }
+
+        .card small {
+            color: var(--lime);
+            font-size: 10px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .card h3 {
+            margin-top: 80px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2rem, 4vw, 4.2rem);
+            line-height: .9;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            max-width: 330px;
+            margin-top: 15px;
+            color: #888;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .card .arrow {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            z-index: 2;
+            font-size: 24px;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-wrap {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 8vw;
+        }
+
+        .skills-intro {
+            color: #a5a59e;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border-top: 1px solid var(--line);
+        }
+
+        .skill {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: .03em;
+        }
+
+        .skill:nth-child(odd) {
+            padding-right: 20px;
+        }
+
+        .skill:nth-child(even) {
+            padding-left: 20px;
+            border-left: 1px solid var(--line);
+        }
+
+        .skill span {
+            display: block;
+            margin-top: 8px;
+            color: #777;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            display: grid;
+            min-height: 75vh;
+            background: var(--lime);
+            color: #000;
+            align-items: center;
+        }
+
+        .contact .section-head .num {
+            color: #000;
+        }
+
+        .contact h2 {
+            max-width: 1000px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(4rem, 11vw, 11rem);
+            line-height: .78;
+            letter-spacing: -.075em;
+            text-transform: uppercase;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 55px;
+        }
+
+        .contact-links a {
+            padding: 13px 18px;
+            border: 1px solid #000;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+            transition: .25s ease;
+        }
+
+        .contact-links a:hover {
+            background: #000;
+            color: var(--lime);
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 25px 6vw;
+            border-top: 1px solid var(--line);
+            color: #666;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 800px) {
+            nav {
+                padding: 17px 5vw;
+            }
+
+            .navlinks {
+                display: none;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            section {
+                padding: 85px 5vw;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero-inner,
+            .about-grid,
+            .work-grid,
+            .skills-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-photo {
+                max-width: 520px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .stat:last-child {
+                border-bottom: 0;
+            }
+
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+
+            .skill:nth-child(even) {
+                padding-left: 0;
+                border-left: 0;
+            }
+
+            .skill:nth-child(odd) {
+                padding-right: 0;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .name-animation {
+                min-height: 105px;
+                margin-top: 40px;
+                gap: 5px;
+                font-size: clamp(23px, 7vw, 40px);
+            }
+
+            .quran-verse {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="intro" aria-hidden="true">
-  <div class="intro-title">
-    <span class="row1">
-      <i>E</i><i>S</i><i>L</i><i>A</i><i>M</i>
-    </span>
-    <span class="row2">
-      <i>M</i><i>O</i><i>H</i><i>A</i><i>M</i><i>E</i><i>D</i>
-    </span>
-  </div>
-  <div class="flash"></div>
-</div>
-<div class="topline"></div>
+    <div class="intro" aria-hidden="true">
+        <div class="intro-content">
+            <div class="eng">ENG</div>
 
-<div class="page">
-<nav>
-  <a class="logo" href="#home">SOLOM®</a>
-  <div class="navlinks">
-    <a href="#about">About</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
-  </div>
-  <span class="menu">MENU</span>
-</nav>
+            <div class="name-animation">
+                <div class="name-line">
+                    <span style="--x:-180px; --y:-120px; --r:-45deg; --d:.05s;">E</span>
+                    <span style="--x:140px; --y:-150px; --r:70deg; --d:.10s;">S</span>
+                    <span style="--x:-220px; --y:80px; --r:120deg; --d:.15s;">L</span>
+                    <span style="--x:180px; --y:130px; --r:-80deg; --d:.20s;">A</span>
+                    <span style="--x:-90px; --y:180px; --r:55deg; --d:.25s;">M</span>
+                </div>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <div class="reveal">
-      <div class="kicker">Web Developer / SOLOM</div>
-      <h1>Eslam<br><em>Mohamed</em></h1>
-      <p class="hero-copy">I build modern websites with clean interfaces, motion and personality — turning ideas into experiences people remember.</p>
+                <div class="name-line">
+                    <span style="--x:220px; --y:-80px; --r:-120deg; --d:.30s;">M</span>
+                    <span style="--x:-160px; --y:-180px; --r:45deg; --d:.35s;">O</span>
+                    <span style="--x:260px; --y:160px; --r:90deg; --d:.40s;">H</span>
+                    <span style="--x:-250px; --y:130px; --r:-65deg; --d:.45s;">A</span>
+                    <span style="--x:100px; --y:-200px; --r:110deg; --d:.50s;">M</span>
+                    <span style="--x:-180px; --y:40px; --r:-90deg; --d:.55s;">E</span>
+                    <span style="--x:190px; --y:-140px; --r:60deg; --d:.60s;">D</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="intro-flash"></div>
     </div>
-    <div class="hero-photo reveal">
-      <img src="profile.jpg" alt="Eslam Mohamed">
-      <div class="tag">Available for creative web work</div>
-    </div>
-  </div>
-</section>
 
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Web Development</span><span>Creative Code</span><span>Modern Interfaces</span><span>SOLOM</span>
-    <span>Web Development</span><span>Creative Code</span><span>Modern Interfaces</span><span>SOLOM</span>
-  </div>
-</div>
+    <div class="topline"></div>
 
-<section id="about">
-  <div class="section-head reveal"><span class="num">01 / ABOUT</span><h2>Who<br>am I?</h2></div>
-  <div class="about-grid">
-    <p class="big-copy reveal">I'm <mark>Eslam Mohamed</mark>, a web developer who enjoys computers, programming and building things from a blank screen.</p>
-    <p class="small-copy reveal">SOLOM is my personal digital space. The idea is simple: combine strong typography, smooth movement and useful code to create websites that feel different without becoming difficult to use.</p>
-  </div>
-  <div class="stats reveal">
-    <div class="stat"><strong>01</strong><p>Personal portfolio</p></div>
-    <div class="stat"><strong>∞</strong><p>Ideas to build</p></div>
-    <div class="stat"><strong>24/7</strong><p>Learning mode</p></div>
-  </div>
-</section>
+    <main class="page">
+        <nav>
+            <a class="logo" href="#home">SOLOM</a>
 
-<section class="work" id="work">
-  <div class="section-head reveal"><span class="num">02 / WORK</span><h2>Selected<br>work</h2></div>
-  <div class="work-grid">
-    <a class="card reveal" href="https://solooom1709.github.io/solom/" target="_blank" rel="noopener">
-      <span class="arrow">↗</span><small>01 / Live</small>
-      <h3>SOLOM</h3><p>My live personal website — built, published and available on the web.</p>
-    </a>
-    <div class="card reveal"><span class="arrow">02</span><small>02 / Building</small><h3>Next<br>Project</h3><p>A new project is being shaped while I keep learning and improving my code.</p></div>
-  </div>
-</section>
+            <div class="navlinks">
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
 
-<section id="skills">
-  <div class="section-head reveal"><span class="num">03 / SKILLS</span><h2>What I<br>use</h2></div>
-  <div class="skills-wrap">
-    <p class="big-copy reveal">Learning by <mark>building</mark>. Every project adds another tool to the box.</p>
-    <div class="skills-list reveal">
-      <div class="skill">HTML <b></b></div><div class="skill">CSS <b></b></div>
-      <div class="skill">JavaScript <b></b></div><div class="skill">Python <b></b></div>
-      <div class="skill">VS Code <b></b></div><div class="skill">Git / GitHub <b></b></div>
-      <div class="skill">Responsive Design <b></b></div><div class="skill">Creative UI <b></b></div>
-    </div>
-  </div>
-</section>
+            <span class="menu">Menu</span>
+        </nav>
 
-<section class="contact" id="contact">
-  <div>
-    <div class="kicker reveal">04 / CONTACT</div>
-    <h2 class="reveal">Let's<br><em>talk.</em></h2>
-    <div class="contact-row reveal">
-      <a href="https://www.instagram.com/eslam_elghazal1/" target="_blank">Instagram</a>
-      <a href="https://wa.me/201120894110" target="_blank">WhatsApp</a>
-      <a href="https://www.tiktok.com/@eslam_elghazal1" target="_blank">TikTok</a>
-      <a href="https://www.facebook.com/share/1JDG2sBXWd/" target="_blank">Facebook</a>
-    </div>
-  </div>
-</section>
-</main>
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <p class="kicker">Web Developer / Engineer</p>
 
-<footer><span>© SOLOM — Eslam Mohamed</span><span>Built with code & curiosity</span></footer>
-</div>
+                    <h1>
+                        <span class="hero-eng">ENG.</span><br>
+                        <em>ESLAM<br>MOHAMED</em>
+                    </h1>
 
-<script>
-const items=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
-},{threshold:.12});
-items.forEach(x=>io.observe(x));
-</script>
+                    <p class="hero-copy">
+                        I build modern, responsive, and memorable digital experiences
+                        with clean design and powerful code.
+                    </p>
+                </div>
+
+                <div class="profile-block">
+                    <div class="hero-photo">
+                        <img src="profile.jpg" alt="Eslam Mohamed">
+                        <span class="tag">Eslam Mohamed</span>
+                    </div>
+
+                    <p class="quran-verse">
+                        وَقُلْ رَبِّ زِدْنِي عِلْمًا
+                        <small>Surah Taha · 114</small>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee">
+            <div class="marquee-track">
+                <span>Web Development ✦</span>
+                <span>Creative Design ✦</span>
+                <span>Modern Interfaces ✦</span>
+                <span>Responsive Websites ✦</span>
+                <span>Web Development ✦</span>
+                <span>Creative Design ✦</span>
+                <span>Modern Interfaces ✦</span>
+                <span>Responsive Websites ✦</span>
+            </div>
+        </div>
+
+        <section id="about">
+            <div class="section-head reveal">
+                <span class="num">01 / ABOUT</span>
+                <h2>About Me</h2>
+            </div>
+
+            <div class="about-grid reveal">
+                <p class="big-copy">
+                    I am <mark>Eslam Mohamed</mark>, a passionate developer focused on
+                    creating digital work that feels clean, useful, and different.
+                </p>
+
+                <p class="small-copy">
+                    I enjoy turning ideas into websites that work beautifully on every
+                    screen. I care about details, performance, visual identity, and
+                    creating an experience that people remember.
+                </p>
+            </div>
+
+            <div class="stats reveal">
+                <div class="stat">
+                    <strong>01+</strong>
+                    <p>Years Learning & Building</p>
+                </div>
+
+                <div class="stat">
+                    <strong>10+</strong>
+                    <p>Projects & Ideas</p>
+                </div>
+
+                <div class="stat">
+                    <strong>∞</strong>
+                    <p>Passion for Technology</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="work" id="work">
+            <div class="section-head reveal">
+                <span class="num">02 / WORK</span>
+                <h2>Selected Work</h2>
+            </div>
+
+            <div class="work-grid">
+                <a class="card reveal" href="#">
+                    <small>Project / 01</small>
+                    <span class="arrow">↗</span>
+                    <h3>Portfolio</h3>
+                    <p>A personal digital space designed to present work, skills, and identity.</p>
+                </a>
+
+                <a class="card reveal" href="#">
+                    <small>Project / 02</small>
+                    <span class="arrow">↗</span>
+                    <h3>Creative Site</h3>
+                    <p>A bold responsive experience with modern motion and visual detail.</p>
+                </a>
+
+                <a class="card reveal" href="#">
+                    <small>Project / 03</small>
+                    <span class="arrow">↗</span>
+                    <h3>Web App</h3>
+                    <p>A clean, useful interface built around simplicity and functionality.</p>
+                </a>
+
+                <a class="card reveal" href="#">
+                    <small>Project / 04</small>
+                    <span class="arrow">↗</span>
+                    <h3>Landing Page</h3>
+                    <p>A focused landing page made to capture attention from the first second.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="section-head reveal">
+                <span class="num">03 / STACK</span>
+                <h2>Skills</h2>
+            </div>
+
+            <div class="skills-wrap reveal">
+                <p class="skills-intro">
+                    Always learning, improving, and using technology to turn ideas into
+                    useful and attractive experiences.
+                </p>
+
+                <div class="skills-list">
+                    <div class="skill">HTML <span>Structure</span></div>
+                    <div class="skill">CSS <span>Styling & Motion</span></div>
+                    <div class="skill">JavaScript <span>Interaction</span></div>
+                    <div class="skill">Responsive Design <span>All Screens</span></div>
+                    <div class="skill">UI Design <span>User Experience</span></div>
+                    <div class="skill">Problem Solving <span>Development</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div>
+                <div class="section-head reveal">
+                    <span class="num">04 / CONTACT</span>
+                </div>
+
+                <h2 class="reveal">Let's<br>Build.</h2>
+
+                <div class="contact-links reveal">
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">TikTok</a>
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <span>© 2026 Eslam Mohamed</span>
+            <span>SOLOM Portfolio</span>
+        </footer>
+    </main>
+
+    <script>
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.12 }
+        );
+
+        revealElements.forEach((element) => revealObserver.observe(element));
+    </script>
+
 </body>
 </html>
+```
